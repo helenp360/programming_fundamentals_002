@@ -23,23 +23,49 @@ const catalogue = [
 ];
 
 function countBooks() {
-  // Your code here
+  return catalogue.length;
 }
 
 function checkBook(book) {
-  // Your code here
+  for (let i = 0; i<catalogue.length; i++){
+    if (book === catalogue[i]){
+      return true;
+    }
+  } return false;
 }
 
 function countBooksByFirstLetter(letter) {
-  // Your code here
+  let num = 0;
+  for (let i = 0; i<catalogue.length; i++){
+    if (catalogue[i].startsWith(letter)){
+      num++;
+    }
+  } return num;
 }
 
 function countBooksByKeyword(keyword) {
-  // Your code here
-}
+  let num = 0;
+  let lowerCaseCatalogue = [];
+  if (typeof keyword != "string"){
+    return "Invalid input";
+  }
+  for (let i = 0; i<catalogue.length; i++){
+    lowerCaseCatalogue.push(catalogue[i].toLowerCase());
+  }
+  for (let i = 0; i<lowerCaseCatalogue.length; i++){
+    if (lowerCaseCatalogue[i].includes(keyword.toString().toLowerCase())){
+      num++;
+  }
+  } return num
+};
+
 
 function getBooksByAuthor(author) {
-  // Your code here
+  if (typeof author != "string"){
+    return "Invalid input";
+  }
+  return catalogue.filter(currentAuthor => currentAuthor.includes(author));
+  
 }
 
 module.exports = {
@@ -49,3 +75,4 @@ module.exports = {
   countBooksByKeyword,
   getBooksByAuthor
 };
+
